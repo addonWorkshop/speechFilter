@@ -83,8 +83,8 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
             return
         text = self.get_text_from_sequence(self.last_sequence_with_long_text)
         api.copyToClip(text)
-        ui.message(_(
-            '{chars_amount} characters copied.'.format(
+        ui.message(
+            _('{chars_amount} characters copied.').format(
                 chars_amount=len(text)
             )
-        ))
+        )
