@@ -40,7 +40,7 @@ jobs:
         prerelease: false
 
     - name: submit addon
-      uses: beqabeqa473/submitNVDAAddon
+      uses: beqabeqa473/submitNVDAAddon@master
       with:
         addon_name: 'speechFilter'
         addon_version: '0.1'
