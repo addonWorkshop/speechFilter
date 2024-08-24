@@ -12,7 +12,10 @@ on:
         default: 'v0.0'
 
 jobs:
+
   buildAndUpload:
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
