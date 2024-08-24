@@ -1,0 +1,51 @@
+name: Addon-release
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Addon version'
+        required: true
+        default: 'v0.0'
+
+jobs:
+  buildAndUpload:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v5
+      with:
+        python-version: 3.11
+    - name: Install dependencies
+      run: |
+        pip install scons markdown
+        sudo apt update
+        sudo apt install gettext
+    - name: Build addon
+      run: scons
+    - name: Release
+      id: release
+      uses: softprops/action-gh-release@v2
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag_name: ${{ github.event_name == 'push' && github.ref_name || github.event.inputs.version }}
+        files: |
+          *.nvda-addon
+        generate_release_notes: true
+        prerelease: false
+
+    - name: submit addon
+      uses: beqabeqa473/submitNVDAAddon
+      with:
+        addon_name: 'speechFilter'
+        addon_version: '0.1'
+        download_url: ${{ fromJSON(steps.release.outputs.assets)[0].browser_download_url }}
+        source_url: 'https://github.com/Danstiv/speechFilter'
+        publisher: 'Danstiv'
+        channel: 'Stable'
+        token: ${{ secrets.USER_TOKEN }}
