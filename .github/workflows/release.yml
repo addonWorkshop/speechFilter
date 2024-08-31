@@ -43,7 +43,7 @@ jobs:
       uses: beqabeqa473/submitNVDAAddon@master
       with:
         addon_name: 'speechFilter'
-        addon_version: '0.1'
+        addon_version: '0.1.1'
         download_url: ${{ fromJSON(steps.release.outputs.assets)[0].browser_download_url }}
         channel: 'alpha'
         token: ${{ secrets.USER_TOKEN }}
