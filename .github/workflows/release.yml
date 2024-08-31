@@ -48,7 +48,5 @@ jobs:
         addon_name: 'speechFilter'
         addon_version: '0.1'
         download_url: ${{ fromJSON(steps.release.outputs.assets)[0].browser_download_url }}
-        source_url: 'https://github.com/Danstiv/speechFilter'
-        publisher: 'Danstiv'
-        channel: 'Stable'
+        channel: 'alpha'
         token: ${{ secrets.USER_TOKEN }}
