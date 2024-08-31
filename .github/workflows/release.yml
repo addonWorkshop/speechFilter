@@ -4,34 +4,31 @@ on:
   push:
     tags:
       - "v*"
-  workflow_dispatch:
-    inputs:
-      version:
-        description: 'Addon version'
-        required: true
-        default: 'v0.0'
 
 jobs:
-
-  buildAndUpload:
+  release:
     permissions:
       contents: write
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout code
+    - name: Checkout
       uses: actions/checkout@v4
-    - name: Set up Python 3.8
+
+    - name: Setup Python
       uses: actions/setup-python@v5
       with:
         python-version: 3.11
+
     - name: Install dependencies
       run: |
         pip install scons markdown
         sudo apt update
         sudo apt install gettext
+
     - name: Build addon
       run: scons
-    - name: Release
+
+    - name: Upload release
       id: release
       uses: softprops/action-gh-release@v2
       with:
