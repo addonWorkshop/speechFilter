@@ -33,14 +33,14 @@ jobs:
       uses: softprops/action-gh-release@v2
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        tag_name: ${{ github.event_name == 'push' && github.ref_name || github.event.inputs.version }}
+        tag_name: ${{ github.ref_name }}
         files: |
           *.nvda-addon
         generate_release_notes: true
         prerelease: false
 
     - name: submit addon
-      uses: beqabeqa473/submitNVDAAddon@master
+      uses: beqabeqa473/submitNVDAAddon@v1
       with:
         addon_name: 'speechFilter'
         addon_version: '0.1.1'
