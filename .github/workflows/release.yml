@@ -39,11 +39,21 @@ jobs:
         generate_release_notes: true
         prerelease: false
 
+    - name: extract addon info
+      run: |
+        python3 -c 'from buildVars import addon_info
+        env = {
+            "ADDON_NAME": addon_info["addon_name"],
+            "ADDON_VERSION": addon_info["addon_version"],
+            "ADDON_CHANNEL": addon_info["addon_updateChannel"],
+        }
+        [print(f"{k}={v}") for k, v in env.items()]' > "$GITHUB_ENV"
+
     - name: submit addon
       uses: beqabeqa473/submitNVDAAddon@v1
       with:
-        addon_name: 'speechFilter'
-        addon_version: '0.1.1'
+        addon_name: ${{ env.ADDON_NAME }}
+        addon_version: ${{ env.ADDON_VERSION }}
         download_url: ${{ fromJSON(steps.release.outputs.assets)[0].browser_download_url }}
-        channel: beta
+        channel: ${{ env.ADDON_CHANNEL }}
         token: ${{ secrets.USER_TOKEN }}
