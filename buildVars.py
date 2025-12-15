@@ -27,7 +27,7 @@ addon_info = {
 		"Filters out long sequences of text, preventing the synthesizer from freezing."
 	),
 	# version
-	"addon_version": "0.2.0",
+	"addon_version": "0.2.1",
 	# Author(s)
 	"addon_author": "Danstiv <danstiv@yandex.ru>",
 	# URL for the add-on documentation support
