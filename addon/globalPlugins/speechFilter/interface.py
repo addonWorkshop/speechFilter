@@ -34,7 +34,7 @@ class SpeechFilterSettingsPanel(ConfigBoundSettingsPanel):
     def makeSettings(self, settings_sizer):
         self.config = config.conf['speechFilter']
         sizer = gui.guiHelper.BoxSizerHelper(self, sizer=settings_sizer)
-        self.threshold_spin = bind_with_config(sizer.addLabeledControl(_('Threshold value for triggering (in characters)'), wx.SpinCtrl, min=500, max=sys.maxsize), 'threshold')
+        self.threshold_spin = bind_with_config(sizer.addLabeledControl(_('Threshold value for triggering (in characters)'), wx.SpinCtrl, min=500, max=10**7), 'threshold')
 
 
 def add_settings(on_save_callback):
