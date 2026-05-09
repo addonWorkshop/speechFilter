@@ -1,7 +1,7 @@
 # Copyright © 2024 Danil Pylaev <danstiv@yandex.ru>.
 #
 # This file is part of speechFilter NVDA-addon
-# (see https://github.com/Danstiv/speechFilter).
+# (see https://github.com/addonWorkshop/speechFilter).
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Lesser General Public License as published by
